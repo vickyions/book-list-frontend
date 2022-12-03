@@ -3,7 +3,7 @@ import "./Login.css";
 import BACKEND_URL from "../exports";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",

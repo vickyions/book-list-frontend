@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Book from "./Book";
 import BACKEND_URL from "../exports";
+import "./BooksList.css";
 
 export default function BooksList(props) {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
+
   useEffect(() => {
     if (!localStorage.getItem("book-token")) {
       return navigate("/");
@@ -23,7 +26,7 @@ export default function BooksList(props) {
       if (data.status === "failed") {
         return window.alert("data.message");
       }
-      if (data.status === "sucess") {
+      if (data.status === "success") {
         setBooks(data.books);
       }
     });
@@ -31,6 +34,15 @@ export default function BooksList(props) {
   }, [navigate]);
 
   return (
-      <h1>BooksList</h1>
+    <div className="bookslist-wrapper">
+      <h2>Books List</h2>
+      <button class="addNewBtn" type="button" onClick={(e) => navigate("/books/new")}>+ Add New Book</button>
+      <div className="books-wrapper">
+        {books.length > 0 && books.map(book => {
+          return (<Book book={book} key={book._id}/>);
+        })}
+      </div>
+    </div>  
+    
   );
 }
