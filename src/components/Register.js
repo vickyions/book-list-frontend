@@ -7,6 +7,7 @@ export default function Login() {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
+    cpassword: "",
   });
   const navigate = useNavigate();
 
@@ -18,20 +19,28 @@ export default function Login() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (inputs.cpassword !== inputs.password) {
+      window.alert("Passwords are not same");
+      return;
+    }
     if (inputs.username && inputs.password) {
-      fetch(`${BACKEND_URL}/login`, {
+      fetch(`${BACKEND_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputs),
+        body: JSON.stringify({
+          username: inputs.username,
+          password: inputs.password,
+        }),
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.status === "failed") window.alert(data.message);
+          console.log(data);
+          if (data.status === "failed") window.alert(data.error);
           else {
-            localStorage.setItem("book-token", data.payload);
-            navigate("/books");
+            window.alert("successfully Registered");
+            navigate("/");
           }
         });
     }
@@ -39,7 +48,7 @@ export default function Login() {
 
   return (
     <div className="wrapper-login">
-      <h2 className="heading">Member Login</h2>
+      <h2 className="heading">Register</h2>
       <div className="login-form-wrapper">
         <form id="login-form" onSubmit={onSubmitHandler}>
           <div className="input-wrapper">
@@ -64,15 +73,26 @@ export default function Login() {
               required
             />
           </div>
+          <div className="input-wrapper">
+            <input
+              className="input"
+              type="password"
+              placeholder="Confirm Password"
+              name="cpassword"
+              value={inputs.cpassword}
+              onChange={onChangeHandler}
+              required
+            />
+          </div>
           <button htmlFor="login-form" className="btn logBtn" type="submit">
-            LOGIN
+            REGISTER
           </button>
           <button
             className="btn regBtn"
             type="button"
-            onClick={(e) => navigate("/register")}
+            onClick={(e) => navigate("/")}
           >
-            REGISTER
+            LOGIN
           </button>
         </form>
       </div>
