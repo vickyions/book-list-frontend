@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Login.css";
+import "./BookEdit.css";
 import BACKEND_URL from "../exports";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -75,14 +75,14 @@ export default function BookEdit() {
   };
 
   return (
-    <div className="wrapper-login">
-      <h2 className="heading">Update Book</h2>
-      <div className="login-form-wrapper">
-        <form id="login-form" onSubmit={onSubmitHandler}>
-          <div className="input-wrapper">
+    <div className="wrapper-login3">
+      <h2 className="heading3">Update Book</h2>
+      <div className="login-form-wrapper3">
+        <form id="login-form3" onSubmit={onSubmitHandler}>
+          <div className="input-wrapper3">
             <label>Title</label>
             <input
-              className="input"
+              className="input3"
               type="text"
               placeholder="Title"
               name="title"
@@ -91,10 +91,10 @@ export default function BookEdit() {
               required
             />
           </div>
-          <div className="input-wrapper">
+          <div className="input-wrapper3">
             <label>ISBN</label>
             <input
-              className="input"
+              className="input3"
               type="text"
               placeholder="ISBN"
               name="isbn"
@@ -103,10 +103,10 @@ export default function BookEdit() {
               required
             />
           </div>
-          <div className="input-wrapper">
+          <div className="input-wrapper3">
             <label>Author</label>
             <input
-              className="input"
+              className="input3"
               type="text"
               placeholder="Author"
               name="author"
@@ -115,10 +115,10 @@ export default function BookEdit() {
               required
             />
           </div>
-          <div className="input-wrapper">
+          <div className="input-wrapper3">
             <label>Description</label>
             <input
-              className="input"
+              className="input3"
               type="text"
               placeholder="Describe this Book"
               name="description"
@@ -127,10 +127,10 @@ export default function BookEdit() {
               required
             />
           </div>
-          <div className="input-wrapper">
+          <div className="input-wrapper3">
             <label>Published Date (yyyy-mm-dd)</label>
             <input
-              className="input"
+              className="input3"
               type="text"
               placeholder="Published date (yyyy-mm-dd)"
               name="published_date"
@@ -139,10 +139,10 @@ export default function BookEdit() {
               required
             />
           </div>
-          <div className="input-wrapper">
+          <div className="input-wrapper3">
             <label>Publisher</label>
             <input
-              className="input"
+              className="input3"
               type="text"
               placeholder="Publisher of this Book"
               name="publisher"
@@ -151,11 +151,11 @@ export default function BookEdit() {
               required
             />
           </div>
-          <button htmlFor="login-form" className="btn logBtn" type="submit">
+          <button htmlFor="login-form" className="btn3 updateBtn" type="submit">
             Update Book
           </button>
           <button
-            className="btn regBtn"
+            className="btn3 regBtn"
             type="button"
             onClick={(e) => navigate("/books")}
           >
